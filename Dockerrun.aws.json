@@ -1,0 +1,32 @@
+{
+    "AWSEVDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name":"frontend",
+            "image":"dongminson/react-node-docker-app-frontend",
+            "hostname":"frontend",
+            "essential":false,
+            "memory": 128 
+        },
+        {
+            "name":"backend",
+            "image":"dongminson/react-node-docker-app-backend",
+            "hostname":"backend",
+            "essential":false,
+            "memory": 128
+        },
+        {
+            "name": "nginx",
+            "image": "dongminson/react-node-docker-app-nginx",
+            "essential":true,
+            "memory": 128,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["frontend", "backend"]
+        }
+    ]
+}
